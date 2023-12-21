@@ -8,6 +8,6 @@ from .api import (
 	display_rfc,
 )
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __license__ = "MIT"
 __author__ = "jxdv"
