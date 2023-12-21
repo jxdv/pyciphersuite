@@ -87,6 +87,7 @@ def display_cs_for_security_lvl(security_lvl):
 	"""
 	if security_lvl not in ["recommended", "secure", "weak", "insecure"]:
 		raise ValueError("Invalid security level specified! Expected: recommended|secure|weak|insecure")
+
 	path = f"/cs/security/{security_lvl}"
 
 	try:
