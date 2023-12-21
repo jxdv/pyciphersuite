@@ -15,6 +15,7 @@ def list_all_cs():
 	"""
 	path = "/cs"
 	response = requests.get(BASE + path)
+	response.raise_for_status()
 	return response.json()["ciphersuites"]
 
 
@@ -35,8 +36,10 @@ def display_cs(ciphersuite_name):
 
 	try:
 		response = requests.get(BASE + path)
+		response.raise_for_status()
 		return response.json()
-	except Exception:
+	except requests.exceptions.RequestException as e:
+		print(f"Error durring request: {e}")
 		return None
 
 
@@ -57,8 +60,10 @@ def display_cs_for_tls_version(tls_version):
 
 	try:
 		response = requests.get(BASE + path)
+		response.raise_for_status()
 		return response.json()["ciphersuites"]
-	except Exception:
+	except requests.exceptions.RequestException as e:
+		print(f"Error durring request: {e}")
 		return None
 
 
@@ -79,8 +84,10 @@ def display_cs_for_security_lvl(security_lvl):
 
 	try:
 		response = requests.get(BASE + path)
+		response.raise_for_status()
 		return response.json()["ciphersuites"]
-	except Exception:
+	except requests.exceptions.RequestException as e:
+		print(f"Error during request: {e}")
 		return None
 
 
@@ -101,8 +108,10 @@ def display_cs_for_given_lib(library):
 
 	try:
 		response = requests.get(BASE + path)
+		response.raise_for_status()
 		return response.json()["ciphersuites"]
-	except Exception:
+	except requests.exceptions.RequestException as e:
+		print(f"Error during request: {e}")
 		return None
 
 
@@ -120,9 +129,11 @@ def list_all_rfcs():
 
 	try:
 		response = requests.get(BASE + path)
+		response.raise_for_status()
 		return response.json()["rfcs"]
-	except Exception:
-		None
+	except requests.exceptions.RequestException as e:
+		print(f"Error during request: {e}")
+		return None
 
 
 def display_rfc(rfc_number):
@@ -142,6 +153,8 @@ def display_rfc(rfc_number):
 
 	try:
 		response = requests.get(BASE + path)
+		response.raise_for_status()
 		return response.json()
-	except Exception:
+	except requests.exceptions.RequestException as e:
+		print(f"Error during request: {e}")
 		return None
