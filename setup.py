@@ -22,4 +22,3 @@ setup(
     keywords=["python3", "api", "rest api", "ciphersuite"],
     install_requires=install_requires,
 )
-
