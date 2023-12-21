@@ -16,9 +16,14 @@ def list_all_cs():
 		A list of all available cipher suites.
 	"""
 	path = "/cs"
-	response = requests.get(BASE + path)
-	response.raise_for_status()
-	return response.json()["ciphersuites"]
+
+	try:
+		response = requests.get(BASE + path)
+		response.raise_for_status()
+		return response.json()["ciphersuites"]
+	except requests.exceptions.RequestException as e:
+		logging.error(f"Error during request: {e}")
+		return None
 
 
 def display_cs(ciphersuite_name):
@@ -41,7 +46,7 @@ def display_cs(ciphersuite_name):
 		response.raise_for_status()
 		return response.json()
 	except requests.exceptions.RequestException as e:
-		logging.error(f"Error durring request: {e}")
+		logging.error(f"Error during request: {e}")
 		return None
 
 
@@ -68,7 +73,7 @@ def display_cs_for_tls_version(tls_version):
 		response.raise_for_status()
 		return response.json()["ciphersuites"]
 	except requests.exceptions.RequestException as e:
-		logging.error(f"Error durring request: {e}")
+		logging.error(f"Error during request: {e}")
 		return None
 
 
