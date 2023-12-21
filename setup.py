@@ -8,7 +8,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 install_requires = [
-    "requests>=2.0.0"
+    "requests"
 ]
 
 setup(

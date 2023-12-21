@@ -14,6 +14,8 @@ python3 -m venv env && source env/bin/activate
 List all available cipher suites:
 
 ```python
+import pyciphersuite
+
 suites = pyciphersuite.list_all_cs()
 print(suites)
 ```
