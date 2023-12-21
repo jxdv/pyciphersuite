@@ -60,6 +60,11 @@ rfc = pyciphersuite.display_rfc("6367")
 print(rfc)
 ```
 
+## Purpose
+
+I've been using ciphersuite APIs in a lot of my internally developed security scripts, and felt it was really redundant to write the same requests over and over, so I've decided to write
+this small API wrapper. It will get rid of redundancies in my scripts and maybe help some other people too.
+
 ## License
 
 [MIT](./LICENSE)
