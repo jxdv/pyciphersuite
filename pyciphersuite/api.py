@@ -1,3 +1,5 @@
+import logging
+
 import requests
 
 BASE = "https://ciphersuite.info/api"
@@ -39,7 +41,7 @@ def display_cs(ciphersuite_name):
 		response.raise_for_status()
 		return response.json()
 	except requests.exceptions.RequestException as e:
-		print(f"Error durring request: {e}")
+		logging.error(f"Error durring request: {e}")
 		return None
 
 
@@ -56,6 +58,9 @@ def display_cs_for_tls_version(tls_version):
 	:return: list
 		A list of ciphersuites.
 	"""
+	if tls_version not in ["10", "11", "12", "13"]:
+		raise ValueError("Invalid TLS version specified! Expected: 10|11|12|13")
+
 	path = f"/cs/tls/{tls_version}"
 
 	try:
@@ -63,7 +68,7 @@ def display_cs_for_tls_version(tls_version):
 		response.raise_for_status()
 		return response.json()["ciphersuites"]
 	except requests.exceptions.RequestException as e:
-		print(f"Error durring request: {e}")
+		logging.error(f"Error durring request: {e}")
 		return None
 
 
@@ -80,6 +85,8 @@ def display_cs_for_security_lvl(security_lvl):
 	:return: list
 		A list of ciphersuites.
 	"""
+	if security_lvl not in ["recommended", "secure", "weak", "insecure"]:
+		raise ValueError("Invalid security level specified! Expected: recommended|secure|weak|insecure")
 	path = f"/cs/security/{security_lvl}"
 
 	try:
@@ -87,7 +94,7 @@ def display_cs_for_security_lvl(security_lvl):
 		response.raise_for_status()
 		return response.json()["ciphersuites"]
 	except requests.exceptions.RequestException as e:
-		print(f"Error during request: {e}")
+		logging.error(f"Error during request: {e}")
 		return None
 
 
@@ -104,6 +111,9 @@ def display_cs_for_given_lib(library):
 	:return: list
 		A list of ciphersuites.
 	"""
+	if library not in ["openssl", "gnutls"]:
+		raise ValueError("Invalid library specified! Expected: openssl|gnutls")
+
 	path = f"/cs/software/{library}"
 
 	try:
@@ -111,7 +121,7 @@ def display_cs_for_given_lib(library):
 		response.raise_for_status()
 		return response.json()["ciphersuites"]
 	except requests.exceptions.RequestException as e:
-		print(f"Error during request: {e}")
+		logging.error(f"Error during request: {e}")
 		return None
 
 
@@ -132,7 +142,7 @@ def list_all_rfcs():
 		response.raise_for_status()
 		return response.json()["rfcs"]
 	except requests.exceptions.RequestException as e:
-		print(f"Error during request: {e}")
+		logging.error(f"Error during request: {e}")
 		return None
 
 
@@ -156,5 +166,5 @@ def display_rfc(rfc_number):
 		response.raise_for_status()
 		return response.json()
 	except requests.exceptions.RequestException as e:
-		print(f"Error during request: {e}")
+		logging.error(f"Error during request: {e}")
 		return None
