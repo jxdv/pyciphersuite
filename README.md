@@ -6,7 +6,7 @@ Get information related to cipher suites.
 
 ```bash
 python3 -m venv env && source env/bin/activate
-(env) python3 -m pip install requests pyciphersuite
+(env) python3 -m pip install pyciphersuite
 ```
 
 ## Usage
